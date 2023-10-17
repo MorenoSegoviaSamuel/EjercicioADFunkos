@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public class Ejercicio2 {
     public static void main(String[] args) throws IOException {
@@ -29,8 +30,6 @@ public class Ejercicio2 {
         System.out.println("");
         System.out.println("|-Funkos agrupados por modelos-|");
         Map<String , List<Funkos>> FunkosAgrupados = Utilidades.agruparPorModelos(listaFunkos);
-
-
         FunkosAgrupados.forEach((modelo, fun) -> {
             System.out.println("MODELO:"+ modelo);
             fun.forEach(f -> {
@@ -38,5 +37,17 @@ public class Ejercicio2 {
             });
             System.out.println("");
         });
+        Stream<Map.Entry<String, Long>> FunkosAgrupadosContador = Utilidades.agruparPorModelosContar(listaFunkos);
+        FunkosAgrupadosContador.forEach((modelo) -> {
+            System.out.println("MODELO: "+ modelo);
+            System.out.println("");
+        });
+        System.out.println("|-Funkos 2023-|");
+        Utilidades.funkos2023(listaFunkos);
+
+        Utilidades.backUp(listaFunkos);
+
+        Utilidades.restore();
+        
     }
 }
